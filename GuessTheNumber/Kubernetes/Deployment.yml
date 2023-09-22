@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guessthenumber
+  namespace: default
+  labels:
+    app: guessthenumber
+spec:
+  selector:
+    matchLabels:
+      app: guessthenumber
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: guessthenumber
+    spec:
+      containers:
+      - name: guessthenumbergame
+        image: nginx:latest

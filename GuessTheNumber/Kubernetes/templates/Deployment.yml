@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guessthenumber
+  name: {{ .Values.appName }}
   namespace: default
   labels:
-    app: guessthenumber
+    app: {{ .Values.appName }}
 spec:
   selector:
     matchLabels:
-      app: guessthenumber
+      app: {{ .Values.appName }}
   replicas: 1
   strategy:
     rollingUpdate:
@@ -18,7 +18,7 @@ spec:
   template:
     metadata:
       labels:
-        app: guessthenumber
+        app: {{ .Values.appName }}
     spec:
       containers:
       - name: guessthenumbergame

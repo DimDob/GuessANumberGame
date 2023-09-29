@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: guessthenumber-service
+  name: {{ .Values.appName }}
   namespace: default
+  labels:
+    app: {{ .Values.appName }}
 spec:
   selector:
-    app: guessthenumber
-  type: NodePort
+    app: {{ .Values.appName }}
+  type: LoadBalancer
   ports:
   - name: guessthenumber-service
     protocol: TCP
